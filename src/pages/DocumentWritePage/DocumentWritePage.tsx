@@ -50,6 +50,8 @@ function DocumentWritePage() {
     const docRef = React.useRef<sharedb.Doc>(null!)
     const wrapperRef = React.useRef<HTMLDivElement>(null!);
     const { documentId } = useParams<{ documentId: string }>()
+    const documentIdRef = React.useRef(documentId)
+
     const [userColor] = React.useState(() => tinycolor.random().toHexString())
     const [usersRecord, setUsersRecord] = React.useState<Record<string, User>>({})
     const [userIdPresenceIdMap, setUserIdPresenceIdMap] = React.useState<Record<string, string>>({})
@@ -79,14 +81,14 @@ function DocumentWritePage() {
         if (isDocumentDataError && isJoteyQueryError(documentDataError) && documentDataError.status === 403) {
             history.replace("/")
         }
-    }, [isDocumentDataError, history])
+    }, [isDocumentDataError, documentDataError, history])
 
     React.useEffect(() => {
         // Open WebSocket connection to ShareDB server
         const socket = new ReconnectingWebSocket(`ws://localhost:8000?userId=${userRef.current?.uid}`);
         const connection = new sharedb.Connection(socket as any);
 
-        const collection = "collaborative_community", id = documentId
+        const collection = "collaborative_community", id = documentIdRef.current
         const doc = connection.get(collection, id);
 
         docRef.current = doc;
@@ -221,6 +223,7 @@ function DocumentWritePage() {
             usersPresence.destroy();
             cursorPresence.destroy();
         }
+        // eslint-disable-next-line
     }, []);
 
     const handleDownloadWord = async () => {

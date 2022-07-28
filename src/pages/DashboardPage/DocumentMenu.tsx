@@ -1,10 +1,7 @@
 import React from 'react'
-import { useAuth } from '@hooks/useAuth';
-import sharedb from 'sharedb/lib/client';
 import { MoreVert } from '@material-ui/icons'
 import { useConfirm } from 'material-ui-confirm';
 import DocumentModal from '@components/DocumentModal';
-import ReconnectingWebSocket from 'reconnecting-websocket';
 import { useDeleteDocumentMutation } from '@data/laravel/services/api';
 import { IconButton, ListItemSecondaryAction, Menu, MenuItem } from '@material-ui/core'
 import {
@@ -14,7 +11,6 @@ import {
 } from 'material-ui-popup-state/hooks'
 
 function DocumentMenu({ documentId }: { documentId: string }) {
-    const { user } = useAuth()
     const confirm = useConfirm();
     const [open, setOpen] = React.useState(false)
     const popupState = usePopupState({ variant: "popover", popupId: documentId });

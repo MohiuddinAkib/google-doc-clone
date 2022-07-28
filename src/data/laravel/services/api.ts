@@ -1,11 +1,10 @@
 import { Mutex } from "async-mutex";
 import { nanoid } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
 import { container } from "@src/appEngine";
 import { QUERY_KEYS } from "@constants/query";
 import { ConfigService } from "@config/ConfigService";
 import { loggedOut, tokenReceived } from "@store/actions/auth";
-import { auth, db, gglProvider, storage } from "@config/firebase";
+import { auth, gglProvider, storage } from "@config/firebase";
 import { isErrorWithMessage, isValidationError } from "@utils/error-handling";
 import {
   signOut,
@@ -14,17 +13,6 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import {
-  doc,
-  where,
-  query,
-  getDoc,
-  getDocs,
-  collection,
-  QuerySnapshot,
-  FirestoreError,
-  DocumentSnapshot,
-} from "firebase/firestore";
 import {
   RootState,
   IDocument,

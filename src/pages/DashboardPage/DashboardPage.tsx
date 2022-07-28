@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@hooks/useAuth";
 import DocumentMenu from "./DocumentMenu";
 import isToday from 'dayjs/plugin/isToday'
+import { Skeleton } from "@material-ui/lab";
 import isBetween from 'dayjs/plugin/isBetween'
 import isYesterday from 'dayjs/plugin/isYesterday'
 import DocumentModal from "@components/DocumentModal";
 import { Add, Description, } from "@material-ui/icons";
 import { useGetDocumentsQuery } from "@data/laravel/services/api";
-import { Box, Button, Container, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, Menu, MenuItem, Typography, } from "@material-ui/core"
-import { Skeleton } from "@material-ui/lab";
+import { Box, Button, Container, List, ListItem, ListItemIcon, ListItemText, Typography, } from "@material-ui/core"
 
 
 dayjs.extend(isToday)
@@ -52,7 +52,7 @@ function DashboardPage() {
         }
 
         return result;
-    }, [documents?.data])
+    }, [documents])
 
     return (
         <Container maxWidth={"lg"}>

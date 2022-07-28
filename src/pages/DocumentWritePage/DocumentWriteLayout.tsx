@@ -78,7 +78,7 @@ function DocumentWriteLayout({ children, activeUsers = [], documentTitle = "", o
   console.log("users are", activeUsers)
 
   const {
-    localAudioTrack, localVideoTrack, leave, join, joinState, remoteUsers, trackState, mute
+    localVideoTrack, leave, join, joinState, remoteUsers, trackState, mute
   } = useAgora(client);
 
   console.log("remote users", remoteUsers)

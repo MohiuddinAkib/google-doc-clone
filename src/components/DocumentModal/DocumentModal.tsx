@@ -5,7 +5,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { DevTool } from '@hookform/devtools'
 import { Autocomplete } from '@material-ui/lab'
 import ReconnectingWebSocket from 'reconnecting-websocket'
-import { AccountCircle, Add, Delete, } from '@material-ui/icons'
+import { AccountCircle, Delete, } from '@material-ui/icons'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useCreateDocumentMutation, useGetDocumentDetailsQuery, useGetPeopleQuery, useUpdateDocumentMutation } from '@data/laravel/services/api'
 import { Avatar, Box, Button, Dialog, Checkbox, DialogActions, DialogContent, DialogTitle, FormControlLabel, ListItem, ListItemAvatar, ListItemText, TextField, IconButton, CircularProgress } from '@material-ui/core'
@@ -44,7 +44,7 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
             })))
         }
 
-    }, [documentDetails, append])
+    }, [documentDetails, setValue])
 
     const [createDocument, { isLoading: isCreating }] = useCreateDocumentMutation()
     const [updateDocument, { isLoading: isUpdating }] = useUpdateDocumentMutation()
