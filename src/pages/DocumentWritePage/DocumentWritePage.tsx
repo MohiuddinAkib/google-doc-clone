@@ -12,8 +12,10 @@ import { makePdf } from '@utils/quill'
 import { Box, } from '@material-ui/core';
 import QuillCursors from "quill-cursors";
 import { useAuth } from '@hooks/useAuth';
+import { container } from "@src/appEngine";
 import * as sharedb from 'sharedb/lib/client';
 import { useHistory, useParams } from 'react-router';
+import { ConfigService } from "@config/ConfigService";
 import DocumentWriteLayout from './DocumentWriteLayout';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 // @ts-ignore
@@ -23,6 +25,8 @@ import { useGetDocumentDetailsQuery, useUploadFileMutation } from '@data/laravel
 
 Quill.register("modules/cursors", QuillCursors);
 Quill.register("modules/imageUploader", ImageUploader);
+
+const configService = container.get<ConfigService>(ConfigService);
 
 
 sharedb.types.register(richText.type)
@@ -85,7 +89,7 @@ function DocumentWritePage() {
 
     React.useEffect(() => {
         // Open WebSocket connection to ShareDB server
-        const socket = new ReconnectingWebSocket(`ws://localhost:8000?userId=${userRef.current?.uid}`);
+        const socket = new ReconnectingWebSocket(`${configService.wsBaseURL}?userId=${userRef.current?.uid}`);
         const connection = new sharedb.Connection(socket as any);
 
         const collection = "collaborative_community", id = documentIdRef.current

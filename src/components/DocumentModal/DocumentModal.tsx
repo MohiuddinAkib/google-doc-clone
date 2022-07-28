@@ -1,14 +1,18 @@
 import React from 'react'
 import sharedb from 'sharedb/lib/client'
 import { useAuth } from '@hooks/useAuth'
+import { container } from '@src/appEngine'
 import { nanoid } from '@reduxjs/toolkit'
 import { DevTool } from '@hookform/devtools'
 import { Autocomplete } from '@material-ui/lab'
+import { ConfigService } from "@config/ConfigService";
 import ReconnectingWebSocket from 'reconnecting-websocket'
 import { AccountCircle, Delete, } from '@material-ui/icons'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useCreateDocumentMutation, useGetDocumentDetailsQuery, useGetPeopleQuery, useUpdateDocumentMutation } from '@data/laravel/services/api'
 import { Avatar, Box, Button, Dialog, Checkbox, DialogActions, DialogContent, DialogTitle, FormControlLabel, ListItem, ListItemAvatar, ListItemText, TextField, IconButton, CircularProgress } from '@material-ui/core'
+
+const configService = container.get<ConfigService>(ConfigService);
 
 function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: () => void, documentId?: string, open: boolean, onClose?: () => any }) {
     const { user } = useAuth();
@@ -57,7 +61,7 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
             write: boolean;
         }[];
     }) => {
-        const socket = new ReconnectingWebSocket(`ws://localhost:8000?userId=${user?.uid}`);
+        const socket = new ReconnectingWebSocket(`${configService.wsBaseURL}?userId=${user?.uid}`);
         const connection = new sharedb.Connection(socket as any);
 
         const documentId = nanoid();
