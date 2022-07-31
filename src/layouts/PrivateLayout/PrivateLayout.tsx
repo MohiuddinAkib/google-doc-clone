@@ -148,7 +148,7 @@ const PrivateLayout: React.FC = (props) => {
                                 flexDirection={"column"}
                             >
                                 <Helmet>
-                                    <title>{"BUBT Doc"}</title>
+                                    <title>{"BUBT DOCS"}</title>
                                 </Helmet>
 
                                 <Header
