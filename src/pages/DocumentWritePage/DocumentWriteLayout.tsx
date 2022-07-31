@@ -349,11 +349,11 @@ function DocumentWriteLayout({ children, activeUsers = [], documentTitle = "", o
                   <div className="controls">
                     <IconButton className={trackState.audio ? "on" : ""}
                       onClick={() => mute("audio")}>
-                      {trackState.audio ? <MicOff /> : <Mic />}
+                      {trackState.audio ? <Mic /> : <MicOff />}
                     </IconButton>
                     <IconButton className={trackState.video ? "on" : ""}
                       onClick={() => mute("video")}>
-                      {trackState.video ? <VideocamOff /> : <Videocam />}
+                      {trackState.video ? <Videocam /> : <VideocamOff />}
                     </IconButton>
                     <IconButton onClick={() => leave()}><CallEnd /></IconButton>
                   </div>
