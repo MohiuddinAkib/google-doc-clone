@@ -175,7 +175,7 @@ function DocumentWriteLayout({ children, activeUsers = [], documentTitle = "", o
                 flexDirection={"column"}
               >
                 <Helmet>
-                  <title>{"Sakila Admin"}</title>
+                  <title>{"BUBT Doc"}</title>
                 </Helmet>
 
 
