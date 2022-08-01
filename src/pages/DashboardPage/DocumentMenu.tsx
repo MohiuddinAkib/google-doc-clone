@@ -3,7 +3,7 @@ import { MoreVert } from '@material-ui/icons'
 import { useConfirm } from 'material-ui-confirm';
 import DocumentModal from '@components/DocumentModal';
 import { useDeleteDocumentMutation } from '@data/laravel/services/api';
-import { IconButton, ListItemSecondaryAction, Menu, MenuItem } from '@material-ui/core'
+import { ClickAwayListener, IconButton, ListItemSecondaryAction, Menu, MenuItem } from '@material-ui/core'
 import {
     bindMenu,
     bindTrigger,
@@ -41,27 +41,29 @@ function DocumentMenu({ documentId }: { documentId: string }) {
                     <MoreVert />
                 </IconButton>
 
-                <Menu
-                    {...bindMenu(popupState)}
-                    onClick={e => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}>
-                    <MenuItem onClick={handleOpenEditModal}>
-                        Update
-                    </MenuItem>
-                    <MenuItem disabled={isDeleting} onClick={handleDelete}>
-                        Remove
-                    </MenuItem>
-                </Menu>
+                <ClickAwayListener onClickAway={popupState.close}>
+                    <Menu
+                        {...bindMenu(popupState)}
+                        onClick={e => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                        }}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }}>
+                        <MenuItem onClick={handleOpenEditModal}>
+                            Update
+                        </MenuItem>
+                        <MenuItem disabled={isDeleting} onClick={handleDelete}>
+                            Remove
+                        </MenuItem>
+                    </Menu>
+                </ClickAwayListener>
             </ListItemSecondaryAction>
             <DocumentModal open={open} onClose={() => setOpen(false)} documentId={documentId} onSuccess={() => setOpen(false)} />
         </>

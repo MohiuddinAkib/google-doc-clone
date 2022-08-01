@@ -219,7 +219,7 @@ const PrivateLayout: React.FC = (props) => {
                                         </ListItemSecondaryAction>
                                     </MenuItem>
 
-                                    <MenuItem button component={Link} to={"/settings"}>
+                                    {/* <MenuItem button component={Link} to={"/settings"}>
                                         <ListItemIcon>
                                             <SettingsIcon />
                                         </ListItemIcon>
@@ -229,7 +229,7 @@ const PrivateLayout: React.FC = (props) => {
                                                 color: "textSecondary",
                                             }}
                                         />
-                                    </MenuItem>
+                                    </MenuItem> */}
 
                                     <MenuItem onClick={handleLogout}>
                                         <ListItemIcon>
