@@ -148,7 +148,7 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
                                                     options={peopleOptions}
                                                     loading={isLoadingPeopleData}
                                                     defaultValue={peopleOptions.find(people => people.uid === field.value)}
-                                                    getOptionLabel={(option) => option?.displayName ?? ""}
+                                                    getOptionLabel={(option) => option?.displayName ?? option.email}
                                                     onChange={(_, value, reason) => {
                                                         if (value && reason === "select-option") {
                                                             field.onChange(value.uid)
