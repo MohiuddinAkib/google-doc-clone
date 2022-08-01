@@ -126,7 +126,7 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
                 e.stopPropagation()
             }} maxWidth={"lg"} open={open} onClose={onClose}>
                 <DialogTitle style={{ fontWeight: "bold", textTransform: "capitalize" }}>
-                    Add new document
+                    {!documentId ? "Add" : "Update"} document
                 </DialogTitle>
                 <DialogContent>
                     {isLoadingDocumentDetails ? <Box width={600} height={400} display={"flex"} alignItems={"center"} justifyContent={"center"}>
