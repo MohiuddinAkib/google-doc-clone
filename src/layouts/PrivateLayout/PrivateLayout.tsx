@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import useApp from "@hooks/useAppContext";
 import { Helmet } from "react-helmet-async";
 import { State } from "@mui-treasury/layout/types";
@@ -32,7 +31,6 @@ import {
     ListItemSecondaryAction,
 } from "@material-ui/core";
 import {
-    Settings as SettingsIcon,
     ExitToApp as ExitToAppIcon,
     Brightness5 as Brightness5Icon,
     Brightness7 as Brightness7Icon,
