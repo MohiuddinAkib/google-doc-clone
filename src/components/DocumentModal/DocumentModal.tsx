@@ -148,7 +148,7 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
                                                     options={peopleOptions}
                                                     loading={isLoadingPeopleData}
                                                     defaultValue={peopleOptions.find(people => people.uid === field.value)}
-                                                    getOptionLabel={(option) => option.displayName}
+                                                    getOptionLabel={(option) => option?.displayName ?? ""}
                                                     onChange={(_, value, reason) => {
                                                         if (value && reason === "select-option") {
                                                             field.onChange(value.uid)
@@ -172,11 +172,11 @@ function DocumentModal({ onSuccess, documentId, open, onClose }: { onSuccess?: (
                                         <Delete />
                                     </IconButton>
                                 </Box>
-                                <Controller
+                                {/* <Controller
                                     control={control}
                                     name={`users.${i}.read` as 'users.0.read'}
                                     render={({ field }) => <FormControlLabel label={"Read"} control={<Checkbox />} {...field} checked={field.value} color={"primary"} />}
-                                />
+                                /> */}
 
                                 <Controller
                                     control={control}

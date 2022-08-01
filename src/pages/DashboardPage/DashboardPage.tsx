@@ -85,24 +85,24 @@ function DashboardPage() {
                                     <ListItemText primary={"No documents"} />
                                 </ListItem>
                                 :
-                                documents.map(document => {
-                                    const [userId] = Object.entries(document.users).find(([userId, meta]) => meta.owner)!;
+                                documents.map(doc => {
+                                    const [userId] = Object.entries(doc.users).find(([, meta]) => meta.owner) ?? [""];
 
                                     const owner = userId === user?.uid ? "me" : ""
 
                                     return (
-                                        <ListItem key={document._id} divider button component={Link} to={`/documents/${document.documentId}/write`}>
+                                        <ListItem key={doc._id} divider button component={Link} to={`/documents/${doc.documentId}/write`}>
                                             <ListItemIcon>
                                                 <Description color={"primary"} />
                                             </ListItemIcon>
 
-                                            <ListItemText primary={document.title} primaryTypographyProps={{ variant: "h6" }} secondary={`Owned by: ${owner}`} />
+                                            <ListItemText primary={doc.title} primaryTypographyProps={{ variant: "h6" }} secondary={`Owned by: ${owner}`} />
 
                                             <Box flex={1}>
-                                                <Typography>{dayjs(document.lastEditedTime).format("HH:mm A")}</Typography>
+                                                <Typography>{dayjs(doc.lastEditedTime).format("HH:mm A")}</Typography>
                                             </Box>
 
-                                            {document.users[user?.uid ?? ""].owner && <DocumentMenu documentId={document.documentId} />}
+                                            {doc.users[user?.uid ?? ""]?.owner && <DocumentMenu documentId={doc.documentId} />}
                                         </ListItem>
                                     )
                                 })}
